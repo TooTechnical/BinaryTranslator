@@ -65,7 +65,7 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 
 ## Contact Information
 
-Your Name - [your-email@example.com](mailto:dillonsmalone.94@gmail.com)
+Your Name - [dillonsmalone.94@gmail.com](mailto:dillonsmalone.94@gmail.com)
 
 Project Link: [https://github.com/TooTechnical/BinaryTranslator](https://github.com/TooTechnical/BinaryTranslator)
 
