@@ -1,8 +1,17 @@
-# import pyfiglet module 
-import pyfiglet 
+# Import pyfiglet module
+import pyfiglet
 
-result = pyfiglet.figlet_format("Binary Translator", font = "bulbhead" ) 
-print(result) 
+def display_title():
+    """
+    Display the title using pyfiglet.
+    """
+    try:
+        result = pyfiglet.figlet_format("Binary Translator", font="bulbhead")
+        print(result)
+    except pyfiglet.FontNotFound:
+        print("Font not found. Using default font.")
+        result = pyfiglet.figlet_format("Binary Translator")
+        print(result)
 
 def text_to_binary(text):
     """
@@ -22,7 +31,6 @@ def text_to_binary(text):
     except Exception as e:
         print(f"Error converting text to binary: {e}")
         return None
-
 
 def binary_to_text(binary):
     """
@@ -57,7 +65,6 @@ def binary_to_text(binary):
         print(f"Error converting binary to text: {e}")
         return None
 
-
 def get_user_choice():
     """
     Get the user's choice for conversion type.
@@ -76,7 +83,6 @@ def get_user_choice():
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
 
-
 def handle_english_to_binary():
     """
     Handle the conversion from English text to binary.
@@ -90,7 +96,6 @@ def handle_english_to_binary():
             print("Binary result:", binary_result)
             if not ask_to_continue():
                 return  # Go back to main menu
-
 
 def handle_binary_to_english():
     """
@@ -108,7 +113,6 @@ def handle_binary_to_english():
         else:
             print("Please enter a valid binary string that is a multiple of 8 bits and contains only 0s and 1s.")
 
-
 def ask_to_continue():
     """
     Ask the user if they want to continue with the same operation or return to the main menu.
@@ -122,11 +126,11 @@ def ask_to_continue():
             return choice == 'yes'
         print("Invalid input. Please type 'yes' or 'no'.")
 
-
 def main():
     """
     Main function to run the binary translator application.
     """
+    display_title()  # Display the title at the start
     while True:
         choice = get_user_choice()
 
@@ -137,7 +141,6 @@ def main():
         elif choice == '3':
             print("Exiting the program. Goodbye!")
             break
-
 
 if __name__ == "__main__":
     main()
