@@ -1,5 +1,5 @@
 # Binary Translator
-Use the Binary Translator here: [Binary Translator](binarytranslator-f27c28116929.herokuapp.com)
+Use the Binary Translator here: [Binary Translator](https://binarytranslator-f27c28116929.herokuapp.com/)
 
 A simple Python program that converts English text to binary and binary to English.
 
