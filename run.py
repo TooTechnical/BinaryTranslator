@@ -1,3 +1,30 @@
+# Import necessary modules
+import pyfiglet
+import os
+
+def display_title():
+    """
+    Display the title using pyfiglet with the "bulbhead" font.
+    """
+    try:
+        # Attempt to use the specified font
+        result = pyfiglet.figlet_format("Binary Translator", font="bulbhead")
+        print(result)
+    except pyfiglet.FontNotFound:
+        # Fallback if the font is not found
+        print("Specified font 'bulbhead' not found. Using default font.")
+        result = pyfiglet.figlet_format("Binary Translator")
+        print(result)
+    except Exception as e:
+        # General exception handling
+        print(f"Error displaying title: {e}")
+
+def clear_screen():
+    """
+    Clear the console screen based on the user's operating system.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def text_to_binary(text):
     """
     Convert English text to its binary representation.
@@ -16,7 +43,6 @@ def text_to_binary(text):
     except Exception as e:
         print(f"Error converting text to binary: {e}")
         return None
-
 
 def binary_to_text(binary):
     """
@@ -51,13 +77,12 @@ def binary_to_text(binary):
         print(f"Error converting binary to text: {e}")
         return None
 
-
 def get_user_choice():
     """
     Get the user's choice for conversion type.
 
     Returns:
-        str: The user's choice ('1' for English to Binary, '2' for Binary to English).
+        str: The user's choice ('1' for English to Binary, '2' for Binary to English, '3' to Exit).
     """
     while True:
         print("\nMain Menu:")
@@ -69,7 +94,6 @@ def get_user_choice():
             return choice
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
-
 
 def handle_english_to_binary():
     """
@@ -84,7 +108,6 @@ def handle_english_to_binary():
             print("Binary result:", binary_result)
             if not ask_to_continue():
                 return  # Go back to main menu
-
 
 def handle_binary_to_english():
     """
@@ -102,7 +125,6 @@ def handle_binary_to_english():
         else:
             print("Please enter a valid binary string that is a multiple of 8 bits and contains only 0s and 1s.")
 
-
 def ask_to_continue():
     """
     Ask the user if they want to continue with the same operation or return to the main menu.
@@ -116,8 +138,7 @@ def ask_to_continue():
             return choice == 'yes'
         print("Invalid input. Please type 'yes' or 'no'.")
 
-
-def main():
+def main_program():
     """
     Main function to run the binary translator application.
     """
@@ -129,9 +150,19 @@ def main():
         elif choice == '2':
             handle_binary_to_english()
         elif choice == '3':
-            print("Exiting the program. Goodbye!")
-            break
+            # When exiting, clear the screen and display the title again
+            clear_screen()
+            return
 
+def main():
+    """
+    Start the program, showing the title and handling the flow to enter the main program.
+    """
+    while True:
+        clear_screen()  # Clear the screen
+        display_title()  # Display the title
+        input("Press Enter to enter the program...")  # Wait for user input to enter the program
+        main_program()  # Run the main program loop
 
 if __name__ == "__main__":
     main()
