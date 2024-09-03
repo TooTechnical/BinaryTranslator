@@ -1,3 +1,9 @@
+# import pyfiglet module 
+import pyfiglet 
+
+result = pyfiglet.figlet_format("Binary Translator", font = "bulbhead" ) 
+print(result) 
+
 def text_to_binary(text):
     """
     Convert English text to its binary representation.
