@@ -60,6 +60,7 @@ def get_user_choice():
         str: The user's choice ('1' for English to Binary, '2' for Binary to English).
     """
     while True:
+        print("\nMain Menu:")
         print("1. English to Binary")
         print("2. Binary to English")
         print("3. Exit")
@@ -75,13 +76,14 @@ def handle_english_to_binary():
     Handle the conversion from English text to binary.
     """
     while True:
-        text = input("Enter English text (or type 'back' to go to the main menu): ")
+        text = input("Enter English text (or type 'back' to return to the main menu): ")
         if text.lower() == 'back':
-            return
+            return  # Return to the main menu
         binary_result = text_to_binary(text)
         if binary_result:
             print("Binary result:", binary_result)
-            break
+            if not ask_to_continue():
+                return  # Go back to main menu
 
 
 def handle_binary_to_english():
@@ -89,15 +91,30 @@ def handle_binary_to_english():
     Handle the conversion from binary string to English text.
     """
     while True:
-        binary = input("Enter binary string (or type 'back' to go to the main menu): ")
+        binary = input("Enter binary string (or type 'back' to return to the main menu): ")
         if binary.lower() == 'back':
-            return
+            return  # Return to the main menu
         text_result = binary_to_text(binary)
         if text_result:
             print("English text:", text_result)
-            break
+            if not ask_to_continue():
+                return  # Go back to main menu
         else:
             print("Please enter a valid binary string that is a multiple of 8 bits and contains only 0s and 1s.")
+
+
+def ask_to_continue():
+    """
+    Ask the user if they want to continue with the same operation or return to the main menu.
+
+    Returns:
+        bool: True if the user wants to continue, False to return to the main menu.
+    """
+    while True:
+        choice = input("Do you want to perform another operation? (yes to continue, no to return to main menu): ").lower()
+        if choice in ['yes', 'no']:
+            return choice == 'yes'
+        print("Invalid input. Please type 'yes' or 'no'.")
 
 
 def main():
