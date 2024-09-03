@@ -44,6 +44,9 @@ def binary_to_text(binary):
         # Join all ASCII characters to form the final text
         text_result = ''.join(ascii_characters)
         return text_result
+    except ValueError as ve:
+        print(f"Input error: {ve}")
+        return None
     except Exception as e:
         print(f"Error converting binary to text: {e}")
         return None
@@ -59,31 +62,58 @@ def get_user_choice():
     while True:
         print("1. English to Binary")
         print("2. Binary to English")
-        choice = input("Enter your choice (1/2): ")
-        if choice in ['1', '2']:
+        print("3. Exit")
+        choice = input("Enter your choice (1/2/3): ")
+        if choice in ['1', '2', '3']:
             return choice
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice. Please enter 1, 2, or 3.")
+
+
+def handle_english_to_binary():
+    """
+    Handle the conversion from English text to binary.
+    """
+    while True:
+        text = input("Enter English text (or type 'back' to go to the main menu): ")
+        if text.lower() == 'back':
+            return
+        binary_result = text_to_binary(text)
+        if binary_result:
+            print("Binary result:", binary_result)
+            break
+
+
+def handle_binary_to_english():
+    """
+    Handle the conversion from binary string to English text.
+    """
+    while True:
+        binary = input("Enter binary string (or type 'back' to go to the main menu): ")
+        if binary.lower() == 'back':
+            return
+        text_result = binary_to_text(binary)
+        if text_result:
+            print("English text:", text_result)
+            break
+        else:
+            print("Please enter a valid binary string that is a multiple of 8 bits and contains only 0s and 1s.")
 
 
 def main():
     """
     Main function to run the binary translator application.
     """
-    choice = get_user_choice()
+    while True:
+        choice = get_user_choice()
 
-    if choice == '1':
-        # Convert English text to binary
-        text = input("Enter English text: ")
-        binary_result = text_to_binary(text)
-        if binary_result:
-            print("Binary result:", binary_result)
-    elif choice == '2':
-        # Convert binary string to English text
-        binary = input("Enter binary string: ")
-        text_result = binary_to_text(binary)
-        if text_result:
-            print("English text:", text_result)
+        if choice == '1':
+            handle_english_to_binary()
+        elif choice == '2':
+            handle_binary_to_english()
+        elif choice == '3':
+            print("Exiting the program. Goodbye!")
+            break
 
 
 if __name__ == "__main__":
